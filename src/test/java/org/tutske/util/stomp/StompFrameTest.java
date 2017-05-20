@@ -146,6 +146,19 @@ public class StompFrameTest {
 		assertThat (message.command (), is ("COMMAND"));
 	}
 
+	@Test
+	public void it_should_keep_the_first_entry_of_a_header () {
+		StompFrame frame = message (
+			"CONNECT",
+			"header: first",
+			"header: second",
+			"",
+			"body"
+		);
+
+		assertThat (frame.header ("header").trim (), is ("first"));
+	}
+
 	private StompFrame message (String ... parts) {
 		return messageWithSep ("\n", parts);
 	}

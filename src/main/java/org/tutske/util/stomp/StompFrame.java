@@ -130,7 +130,9 @@ public class StompFrame {
 			String header = extract (current, sep);
 			String value = extract (sep + 1, line);
 
-			headers.put (decode (header), decode (value));
+			if ( ! headers.containsKey (header) ) {
+				headers.put (decode (header), decode (value));
+			}
 			current = line + 1;
 		}
 
