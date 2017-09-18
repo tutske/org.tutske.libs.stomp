@@ -159,6 +159,22 @@ public class StompFrameTest {
 		assertThat (frame.header ("header").trim (), is ("first"));
 	}
 
+	@Test
+	public void it_should_create_ping_frames () {
+		StompFrame frame = StompFrame.ping ();
+
+		assertThat (frame.command (), is ("PING"));
+		assertThat (new String (frame.raw ()), is ("\n"));
+	}
+
+	@Test
+	public void it_should_detect_ping_messages_from_raw_bytes () {
+		StompFrame frame = StompFrame.fromRaw (new byte [] { '\n' });
+
+		assertThat (frame.command (), is ("PING"));
+		assertThat (new String (frame.raw ()), is ("\n"));
+	}
+
 	private StompFrame message (String ... parts) {
 		return messageWithSep ("\n", parts);
 	}

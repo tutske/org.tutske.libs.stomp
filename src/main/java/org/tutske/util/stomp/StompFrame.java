@@ -24,12 +24,19 @@ public class StompFrame {
 	private Map<String, String> headers = new HashMap<> ();
 	private byte [] body;
 
+	public static StompFrame ping () {
+		StompFrame frame = new StompFrame (new byte [] { '\n' }, 0, 1);
+		frame.command = "PING";
+		return frame;
+	}
+
 	public static StompFrame fromRaw (byte [] data) {
 		return fromRaw (data, 0, data.length);
 	}
 
 	public static StompFrame fromRaw (byte [] data, int start, int len) {
-		return new StompFrame (data, start, len);
+		if ( data.length < 2 && data[0] == '\n' ) { return ping (); }
+		else { return new StompFrame (data, start, len); }
 	}
 
 	public static StompFrame fromData (String command) {
@@ -114,6 +121,8 @@ public class StompFrame {
 		command = extract (current, end);
 		current = end + 1;
 
+		if ( current == data.length ) { return; }
+
 		while ( true ) {
 			if ( nextCharsAre (current, '\n') || nextCharsAre (current, '\r', '\n') ) {
 				break;
@@ -167,7 +176,7 @@ public class StompFrame {
 	}
 
 	private String extract (int start, int end) {
-		if ( data[end - 1 ] == '\r' ) { end = end - 1; }
+		if ( end > 0 && data[end - 1 ] == '\r' ) { end = end - 1; }
 		return new String (data, start, end - start);
 	}
 
