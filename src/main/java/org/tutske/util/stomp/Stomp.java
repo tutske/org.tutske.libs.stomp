@@ -13,12 +13,12 @@ public class Stomp {
 	public static class Commands {
 		public static final String CONNECT = "CONNECT";
 		public static final String DISCONNECT = "DISCONNECT";
-		private static final String SEND = "SEND";
-		private static final String RECEIPT = "RECEIPT";
-		private static final String MESSAGE = "MESSAGE";
-		private static final String ERROR = "ERROR";
-		private static final String ACK = "ACK";
-		private static final String NACK = "NACK";
+		public static final String SEND = "SEND";
+		public static final String RECEIPT = "RECEIPT";
+		public static final String MESSAGE = "MESSAGE";
+		public static final String ERROR = "ERROR";
+		public static final String ACK = "ACK";
+		public static final String NACK = "NACK";
 	}
 
 	public static Map<String, Object> headers (Object ... headers) {
