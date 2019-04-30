@@ -1,6 +1,6 @@
 package org.tutske.util.stomp;
 
-import org.tutske.utils.PrimitivesParser;
+import org.tutske.lib.utils.PrimitivesParser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
