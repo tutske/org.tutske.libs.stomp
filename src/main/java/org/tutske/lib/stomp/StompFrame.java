@@ -1,4 +1,4 @@
-package org.tutske.util.stomp;
+package org.tutske.lib.stomp;
 
 import org.tutske.lib.utils.PrimitivesParser;
 

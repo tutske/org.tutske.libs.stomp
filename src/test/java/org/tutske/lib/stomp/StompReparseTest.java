@@ -1,4 +1,4 @@
-package org.tutske.util.stomp;
+package org.tutske.lib.stomp;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;

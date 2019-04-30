@@ -1,4 +1,4 @@
-package org.tutske.util.stomp;
+package org.tutske.lib.stomp;
 
 import java.nio.charset.Charset;
 import java.util.Collections;
