@@ -1,8 +1,8 @@
-package org.tutske.util.stomp;
+package org.tutske.lib.stomp;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
-import static org.tutske.util.stomp.Stomp.*;
+import static org.tutske.lib.stomp.Stomp.*;
 
 import org.junit.Test;
 

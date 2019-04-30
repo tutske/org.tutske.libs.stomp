@@ -1,14 +1,11 @@
-package org.tutske.util.stomp;
+package org.tutske.lib.stomp;
 
-import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 public class Stomp {
-
-	private final static Charset UTF8 = Charset.forName ("utf-8");
 
 	public static class Commands {
 		public static final String CONNECT = "CONNECT";
