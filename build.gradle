@@ -5,10 +5,10 @@ plugins {
 group = 'org.tutske.libs'
 
 dependencies {
-	compile (
-		[ group: 'org.tutske.libs', name: 'org.tutske.libs.utils', version: '[a.3,)' ]
+	implementation (
+		[ group: 'org.tutske.libs', name: 'org.tutske.libs.utils', version: '[a.3.3,)' ]
 	)
-	testCompile (
+	testImplementation (
 		[ group: 'junit', name: 'junit', version: '[1,)' ],
 		[ group: 'org.hamcrest', name: 'hamcrest-all', version: '[1,)' ],
 		[ group: 'org.mockito', name: 'mockito-all', version: '[1,)' ]
