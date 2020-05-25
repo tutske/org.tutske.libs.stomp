@@ -1,11 +1,8 @@
 plugins {
-	id "org.tutske.gradle" version 'a.2.2'
+	id "org.tutske.gradle" version 'a.2.4'
 }
 
 group = 'org.tutske.libs'
-
-sourceCompatibility = '11'
-targetCompatibility = '11'
 
 dependencies {
 	compile (
