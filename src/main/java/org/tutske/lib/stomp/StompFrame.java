@@ -5,6 +5,7 @@ import org.tutske.lib.utils.PrimitivesParser;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,8 +13,6 @@ import java.util.Map;
 
 
 public class StompFrame {
-
-	private static final Charset UTF8 = Charset.forName ("utf-8");
 
 	private final byte [] data;
 	private final int start;
@@ -53,13 +52,13 @@ public class StompFrame {
 
 	public static StompFrame fromData (String command, Map<String, Object> headers, byte [] content) {
 		try ( ByteArrayOutputStream stream = new ByteArrayOutputStream (content.length) ) {
-			stream.write (command.getBytes (UTF8));
+			stream.write (command.getBytes (StandardCharsets.UTF_8));
 			stream.write ('\n');
 
 			for ( Map.Entry<String, Object> entry : headers.entrySet () ) {
-				stream.write (encode (entry.getKey ()).getBytes (UTF8));
+				stream.write (encode (entry.getKey ()).getBytes (StandardCharsets.UTF_8));
 				stream.write (':');
-				stream.write (encode (entry.getValue ().toString ()).getBytes (UTF8));
+				stream.write (encode (entry.getValue ().toString ()).getBytes (StandardCharsets.UTF_8));
 				stream.write ('\n');
 			}
 

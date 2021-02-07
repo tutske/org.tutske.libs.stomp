@@ -2,9 +2,10 @@ package org.tutske.lib.stomp;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.tutske.lib.stomp.Stomp.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
@@ -86,9 +87,11 @@ public class StompTest {
 		assertThat (frame.getBody (), is ("The description of the error"));
 	}
 
-	@Test (expected = RuntimeException.class)
+	@Test
 	public void it_should_complain_about_odd_number_of_header_arguments () {
-		headers ("header", "value", "only-header");
+		assertThrows (RuntimeException.class, () -> {
+			headers ("header", "value", "only-header");
+		});
 	}
 
 }

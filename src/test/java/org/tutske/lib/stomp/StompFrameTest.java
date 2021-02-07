@@ -2,8 +2,9 @@ package org.tutske.lib.stomp;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
@@ -115,29 +116,39 @@ public class StompFrameTest {
 		assertThat (message.getBody (), is ("the body\0tail"));
 	}
 
-	@Test (expected = RuntimeException.class)
+	@Test
 	public void it_should_complain_about_large_contents () {
-		message ("CONNECT", "content-length: 1234", "", "the body");
+		assertThrows (RuntimeException.class, () -> {
+			message ("CONNECT", "content-length: 1234", "", "the body");
+		});
 	}
 
-	@Test (expected = RuntimeException.class)
+	@Test
 	public void it_should_complain_when_there_is_an_malformed_header () {
-		message ("CONNECT", "content-length = 13", "", "the body");
+		assertThrows (RuntimeException.class, () -> {
+			message ("CONNECT", "content-length = 13", "", "the body");
+		});
 	}
 
-	@Test (expected = RuntimeException.class)
+	@Test
 	public void it_should_complain_about_missing_headers_section () {
-		message ("CONNECT", "the body");
+		assertThrows (RuntimeException.class, () -> {
+			message ("CONNECT", "the body");
+		});
 	}
 
-	@Test (expected = RuntimeException.class)
+	@Test
 	public void it_should_complain_about_incorrectly_terminated_header_line () {
-		message ("CONNECT", "header: value\0");
+		assertThrows (RuntimeException.class, () -> {
+			message ("CONNECT", "header: value\0");
+		});
 	}
 
-	@Test (expected = RuntimeException.class)
+	@Test
 	public void it_should_complain_about_frames_without_a_properly_terminated_command () {
-		message ("CONNECT\0");
+		assertThrows (RuntimeException.class, () -> {
+			message ("CONNECT\0");
+		});
 	}
 
 	@Test
